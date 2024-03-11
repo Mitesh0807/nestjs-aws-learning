@@ -1,0 +1,23 @@
+services:
+  reservation:
+    build: 
+      context: .
+      dockerfile: ./apps/reservations/Dockerfile
+      target: development
+    command: npm run start:dev
+    env_file:
+      - ./apps/reservations/.env
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+        - mongo-data:/data/db
+
+volumes:
+  mongo-data:
