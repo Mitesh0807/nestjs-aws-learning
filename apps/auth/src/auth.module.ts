@@ -3,8 +3,8 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import Joi from 'joi';
-import { LoggerModule } from 'nestjs-pino';
+import * as Joi from 'joi';
+import { LoggerModule } from '@app/common';
 
 @Module({
   imports: [
