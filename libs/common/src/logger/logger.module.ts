@@ -34,6 +34,7 @@ import { LoggerModule as PinoLogger } from 'nestjs-pino';
             info: 'green',
             warn: 'yellow',
             error: 'red',
+            log: 'magenta',
           },
         },
       },
