@@ -1,21 +1,29 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, Res } from '@nestjs/common';
 import { ReservationsService } from './reservations.service';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
-import { JwtAuthGuard } from '@app/common';
+import { JwtAuthGuard, UserDto, CurrentUser } from '@app/common';
+
 
 @Controller('reservations')
 export class ReservationsController {
   constructor(private readonly reservationsService: ReservationsService) { }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createReservationDto: CreateReservationDto) {
-    return this.reservationsService.create(createReservationDto);
+  create(@Body() createReservationDto: CreateReservationDto,
+    @CurrentUser() user: UserDto,
+    @Res({ passthrough: true }) response: Response
+  ) {
+    return this.reservationsService.create(createReservationDto, user._id);
   }
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.reservationsService.findAll();
+  async findAll(
+    @CurrentUser() user: UserDto,
+    @Res({ passthrough: true }) response: Response
+  ) {
+    return this.reservationsService.findAll(user._id);
   }
 
   @Get(':id')

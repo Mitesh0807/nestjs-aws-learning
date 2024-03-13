@@ -32,7 +32,7 @@ export class UsersService {
     })
   }
 
-  remove(_id: string) {
+ async  remove(_id: string) {
     return this.usersRepository.findOneAndDelete({ _id })
   }
 

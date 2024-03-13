@@ -2,8 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Res, UseGuards } fro
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { CurrentUser } from '../current-user.decorator';
-import { UserDocument } from '@app/common';
+import { UserDocument, CurrentUser } from '@app/common';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 
 @Controller('users')
