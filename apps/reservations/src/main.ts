@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { Logger } from "nestjs-pino";
 import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
+import { Transport } from '@nestjs/microservices';
 async function bootstrap() {
   const app = await NestFactory.create(ReservationsModule);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
