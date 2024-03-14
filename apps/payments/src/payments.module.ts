@@ -18,19 +18,19 @@ import { PaymentsService } from './payments.service';
         MONGODB_URI: Joi.string().required(),
       })
     }),
-    // ClientsModule.registerAsync([
-    //   {
-    //     name: NOTIFICATIONS_SERVICE,
-    //     useFactory: (configService: ConfigService) => ({
-    //       transport: Transport.TCP,
-    //       options: {
-    //         host: configService.get('NOTIFICATIONS_HOST'),
-    //         port: configService.get('NOTIFICATIONS_PORT'),
-    //       },
-    //     }),
-    //     inject: [ConfigService],
-    //   },
-    // ]),
+    ClientsModule.registerAsync([
+      {
+        name: NOTIFICATIONS_SERVICE,
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.TCP,
+          options: {
+            host: configService.get('NOTIFICATIONS_HOST'),
+            port: configService.get('NOTIFICATIONS_PORT'),
+          },
+        }),
+        inject: [ConfigService],
+      },
+    ]),
     LoggerModule
   ],
   controllers: [PaymentsController],
