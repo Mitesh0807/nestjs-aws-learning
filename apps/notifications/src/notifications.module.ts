@@ -4,6 +4,8 @@ import { NotificationsService } from './notifications.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { LoggerModule } from '@app/common';
+import { MailerModule } from '@nestjs-modules/mailer';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,9 +18,22 @@ import { LoggerModule } from '@app/common';
         MONGODB_URI: Joi.string().required(),
       })
     }),
+    MailerModule.forRoot({
+      transport: {
+        service: 'gmail',
+        secure: false,
+        auth: {
+          type: 'OAuth2',
+          user: process.env.GOOGLE_OAUTH_CLIENT_ID,
+          clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+          refreshToken: process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
+        },
+      },
+    }),
     LoggerModule
   ],
   controllers: [NotificationsController],
   providers: [NotificationsService],
 })
-export class NotificationsModule {}
+export class NotificationsModule { }
