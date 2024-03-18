@@ -35,14 +35,14 @@ steps:
       [
         'build',
         '-t',
-        'asia-south1-docker.pkg.dev/horizontal-ward-417306/payment/production',
+        'asia-south1-docker.pkg.dev/horizontal-ward-417306/payments/production',
         '-f',
         'apps/payment/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/payment/production']
+      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/payments/production']
 
    # Notifications
   - name: 'gcr.io/cloud-builders/docker'
@@ -50,11 +50,11 @@ steps:
       [
         'build',
         '-t',
-        'asia-south1-docker.pkg.dev/horizontal-ward-417306/notification/production',
+        'asia-south1-docker.pkg.dev/horizontal-ward-417306/notifications/production',
         '-f',
         'apps/notification/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/notification/production']
+      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/notifications/production']
