@@ -1,0 +1,21 @@
+{
+  "name": "@booking/notifications",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^6.9.1",
+    "@nestjs-modules/mailer": "^1.11.2"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.7"
+  }
+}
