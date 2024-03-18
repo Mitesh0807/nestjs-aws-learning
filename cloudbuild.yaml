@@ -1,0 +1,60 @@
+steps:
+  # Reservations 
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'asia-south1-docker.pkg.dev/horizontal-ward-417306/reservations/production',
+        '-f',
+        'apps/reservations/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/reservations/production']
+
+  # Auths 
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'asia-south1-docker.pkg.dev/horizontal-ward-417306/auth/production',
+        '-f',
+        'apps/auth/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/auth/production']
+
+  # Payments 
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'asia-south1-docker.pkg.dev/horizontal-ward-417306/payment/production',
+        '-f',
+        'apps/payment/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/payment/production']
+
+   # Notifications
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'asia-south1-docker.pkg.dev/horizontal-ward-417306/notification/production',
+        '-f',
+        'apps/notification/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'asia-south1-docker.pkg.dev/horizontal-ward-417306/notification/production']
