@@ -37,7 +37,7 @@ steps:
         '-t',
         'asia-south1-docker.pkg.dev/horizontal-ward-417306/payments/production',
         '-f',
-        'apps/payment/Dockerfile',
+        'apps/payments/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
@@ -52,7 +52,7 @@ steps:
         '-t',
         'asia-south1-docker.pkg.dev/horizontal-ward-417306/notifications/production',
         '-f',
-        'apps/notification/Dockerfile',
+        'apps/notifications/Dockerfile',
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
