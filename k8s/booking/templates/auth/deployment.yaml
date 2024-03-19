@@ -15,11 +15,24 @@ spec:
         app: auth
     spec:
       containers:
-      - image: asia-south1-docker.pkg.dev/horizontal-ward-417306/auth/production
-        name: auth
-        env:
-          - name: MONGODB_URI
-            valueFrom:
-              secretKeyRef:
-                name: mongodb
-                key: connectionString
+        - image: asia-south1-docker.pkg.dev/horizontal-ward-417306/auth/production
+          name: auth
+          env:
+            - name: 'JWT_EXPIRATION'
+              value: '86400'
+            - name: 'HTTP_PORT'
+              value: '3001'
+            - name: 'TCP_PORT'
+              value: '3002'
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: connectionString
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: secret
+          ports:
+            - containerPort: 3000

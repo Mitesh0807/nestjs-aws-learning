@@ -15,11 +15,24 @@ spec:
         app: payments
     spec:
       containers:
-      - image: asia-south1-docker.pkg.dev/horizontal-ward-417306/payments/production
-        name: payments
-        env:
-          - name: MONGODB_URI
-            valueFrom:
-              secretKeyRef:
-                name: mongodb
-                key: connectionString
+        - image: asia-south1-docker.pkg.dev/horizontal-ward-417306/payments/production
+          name: payments
+          env:
+            - name: PORT
+              value: '3001'
+            - name: NOTIFICATIONS_HOST
+              value: notifications
+            - name: NOTIFICATIONS_PORT
+              value: '3000'
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiKey
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: connectionString
+          ports:
+            - containerPort: 3001
