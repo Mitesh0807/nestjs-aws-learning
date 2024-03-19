@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payments
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+      - image: asia-south1-docker.pkg.dev/horizontal-ward-417306/payments/production
+        name: payments
+        env:
+          - name: MONGODB_URI
+            valueFrom:
+              secretKeyRef:
+                name: mongodb
+                key: connectionString
